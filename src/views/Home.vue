@@ -8,9 +8,9 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import { mapGetters, mapMutations } from "vuex";
+import { post as axiosPost } from "@/api/httplib";
 
 export default {
   name: "Home",
@@ -19,6 +19,9 @@ export default {
   },
   created() {
     this.$t("123");
+    this.$api.home.getName();
+    this.$api.home.getAge({ name: "swl" });
+    this.$api.home.userList();
   },
   methods: {
     ...mapMutations(["add"])

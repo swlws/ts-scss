@@ -1,4 +1,4 @@
-const modules: FreeObject = {};
+let modules: FreeObject = {};
 
 // 读取./modules目录下的配置文件
 const requireComponent = require.context("./modules", false, /.*ts/);

@@ -1,0 +1,19 @@
+{
+    "home": [
+        {
+            "url": "/api/name",
+            "method": "get",
+            "func": "getName"
+        },
+        {
+            "url": "/api/age",
+            "method": "post",
+            "func": "getAge"
+        },
+        {
+            "url": "/api/user/list",
+            "method": "get",
+            "func": "userList"
+        }
+    ]
+}

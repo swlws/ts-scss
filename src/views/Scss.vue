@@ -2,6 +2,9 @@
   <div>
     <h3>SCSS Practice</h3>
 
+    <header>全局CSS变量</header>
+    <section class="box"></section>
+
     <header>变量</header>
     <section>
       <p class="text-01">测试1</p>
@@ -40,6 +43,12 @@
 </template>
 
 <style lang="scss" scoped>
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: $red;
+}
+
 $color: red;
 
 h3 {
