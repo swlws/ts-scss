@@ -1,6 +1,11 @@
 {
     "home": [
         {
+            "url": "/api/test",
+            "method": "get",
+            "func": "getTest"
+        },
+        {
             "url": "/api/name",
             "method": "get",
             "func": "getName"
