@@ -13,3 +13,9 @@ declare module '*.json' {
 interface FreeObject {
   [x: string]: any;
 }
+
+// 规则校验错误信息
+interface ruleErrorCode{
+  key: String,
+  msg: String
+}
