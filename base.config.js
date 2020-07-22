@@ -1,4 +1,5 @@
 const path = require('path');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 
 const resolve = dir => path.join(__dirname, dir);
 
@@ -33,3 +34,41 @@ function alias(config) {
     .set('@', resolve('src'))
 }
 module.exports.alias = alias;
+
+function compression(config){
+  config.plugin('compressionPlugin').use(new CompressionWebpackPlugin({
+    test: /\.js$|\.html$|\.css$|\.less$|\.sass$/,
+    threshold: 10240, // 对超过10K的数据压缩
+    deleteOriginalAssets: false // true不删除源文件；false删除源文件
+  }))
+}
+module.exports.compression = compression;
+
+function splitChunks(config){
+  config.optimization.minimize(true);
+  config.optimization.splitChunks({
+    name: true,
+    chunks: 'all',
+    cacheGroups: {
+      elementUI: {
+        name: 'chunk-element-ui',
+        priority: 20,
+        test: /[\\/]node_modules[\\/]element-ui[\\/]/
+      },
+      libs: {
+        name: 'chunk-libs',
+        test: /[\\/]node_modules[\\/]/,
+        priority: 10,
+        chunks: 'initial'
+      },
+      commons: {
+        name: 'chunk-common',
+        test: resolve('src'),
+        minChunks: 2, // 代码块最少引用次数为2
+        priority: 5,
+        reuseExistingChunk: true
+      }
+    }
+  })
+}
+module.exports.splitChunks = splitChunks;
