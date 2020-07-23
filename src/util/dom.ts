@@ -1,3 +1,6 @@
+/**
+* 获取浏览器窗口的大小
+*/
 function getViewport(){
 	if(document.compatMode === 'BackCompat'){
 		return {
@@ -12,44 +15,46 @@ function getViewport(){
 	}
 }
 
-function getScroll(element){
-	let width = 0, height = 0;
-	if(document.compatMode === 'BackCompat'){
-		height = document.dody.scrollTop;
-		width = document.dody.scrollLeft;
-	}else{
-		height = document.documentElement.scrollTop;
-		width = document.documentElement.scrollLeft;
-	}
+/**
+* 相对于根节点的所有滚动总和
+* @param{domNode} element 起始节点
+*/
+function getTotalScrollOffsetRoot(element) {
+    let width = 0,
+        height = 0;
 
-	return { width: width, height: height }
+    let pNode = element.parentNode;
+    while(pNode !== null && pNode !== document){
+    	width += pNode.scrollLeft;
+    	height += pNode.scrollTop;
+
+    	pNode = pNode.parentNode;
+    }
+
+    return { width: width, height: height }
 }
 
-function getElementOffsetRoot(element){
-	if(!element) return {left: 0, top: 0};
+/**
+* 节点在浏览器窗口中的位置
+* @param{domNode} element 起始节点
+*/
+function getElementOffsetRoot(element) {
+    if (!element) return { left: 0, top: 0 };
 
-	let actualTop = element.offsetTop;
-	let actualLeft = element.offsetLeft;
-	let current = element.offsetParent;
+    let actualTop = element.offsetTop;
+    let actualLeft = element.offsetLeft;
+    let current = element.offsetParent;
 
-	while(current !== null){
-		actualTop += current.offsetTop;
-		actualLeft += current.offsetLeft;
+    while (current !== null) {
+        actualTop += current.offsetTop ;
+        actualLeft += current.offsetLeft;
 
-		current = current.offsetParent;
-	}
+        current = current.offsetParent;
+    }
 
-	let elementScrollLeft = 0, elementScrollTop = 0;
-	if(document.compatMode === 'BackCompat'){
-		elementScrollTop = document.dody.scrollTop;
-		elementScrollLeft = document.dody.scrollLeft;
-	}else{
-		elementScrollTop = document.documentElement.scrollTop;
-		elementScrollLeft = document.documentElement.scrollLeft;
-	}
-
-	return {
-		top: actualTop - elementScrollTop,
-		left: actualLeft - elementScrollLeft
-	}
+    let scroll = getScroll(element);
+    return {
+        top: actualTop - scroll.height,
+        left: actualLeft - scroll.width
+    }
 }
