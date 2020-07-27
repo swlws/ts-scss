@@ -1,19 +1,22 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
+
+const myImport = (file: string) => () => import(`../views${file}`)
 
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    redirect: '/login'
   },
   {
-    path: "/scss",
-    name: "Scss",
-    component: () => import("../views/Scss.vue")
+    path: "/login",
+    component: myImport("/login/index.vue")
+  },
+  {
+    path: "/home",
+    component: myImport("/home/index.vue")
   }
 ];
 

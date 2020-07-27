@@ -5,7 +5,7 @@ function getViewport(){
 	if(document.compatMode === 'BackCompat'){
 		return {
 			width: document.body.clientWidth,
-			height: document.dody.clientHeight
+			height: document.body.clientHeight
 		}
 	}else{
 		return {
@@ -19,7 +19,7 @@ function getViewport(){
 * 相对于根节点的所有滚动总和
 * @param{domNode} element 起始节点
 */
-function getTotalScrollOffsetRoot(element) {
+function getTotalScrollOffsetRoot(element: any) {
     let width = 0,
         height = 0;
 
@@ -34,11 +34,18 @@ function getTotalScrollOffsetRoot(element) {
     return { width: width, height: height }
 }
 
+function getScroll(element: any){
+    return {
+        width: 0,
+        height: 0
+    }
+}
+
 /**
 * 节点在浏览器窗口中的位置
 * @param{domNode} element 起始节点
 */
-function getElementOffsetRoot(element) {
+function getElementOffsetRoot(element: any) {
     if (!element) return { left: 0, top: 0 };
 
     let actualTop = element.offsetTop;

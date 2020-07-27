@@ -1,4 +1,10 @@
 export default {
+    login: {
+        login: {
+            url: '/api/login',
+            method: 'get'
+        }
+    },
     home: {
         getTest: {
             url: '/api/test',
@@ -36,17 +42,9 @@ export default {
 
             }
         },
-        getName: {
-            url: "/api/name",
-            method: "get",
-        },
-        getAge: {
-            url: "/api/age",
-            method: "post",
-        },
-        userList: {
-            url: "/api/user/list",
-            method: "get",
+        menu: {
+            url: '/api/menu',
+            method: 'get'
         }
     }
 }

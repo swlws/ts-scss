@@ -1,0 +1,13 @@
+{
+    "r0": true,
+    "data": [
+        {
+            "label": "仪表盘",
+            "url": "/dashboard"
+        },
+        {
+            "label": "系统管理",
+            "url": "/systemMgr"
+        }
+    ]
+}
