@@ -35,9 +35,9 @@ export default {
   display: flex;
   flex-direction: column;
 
-  header {
+  > header {
     height: 50px;
-    background-color: blueviolet;
+    background: #00b1fd linear-gradient(-90deg, #0072f3, #00b1fd);
     display: flex;
 
     header {
@@ -53,7 +53,7 @@ export default {
     }
   }
 
-  section {
+  > section {
     flex: 1;
   }
 }

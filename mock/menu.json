@@ -2,11 +2,31 @@
     "r0": true,
     "data": [
         {
-            "label": "仪表盘",
-            "url": "/dashboard"
+            "label": "一级菜单-01",
+            "url": "/dashboard",
+            "child": [
+                {
+                    "label": "二级菜单-01",
+                    "url": "/systemMgr",
+                    "child": [
+                        {
+                            "label": "三级菜单-01",
+                            "url": "/systemMgr"
+                        },
+                        {
+                            "label": "三级菜单-02",
+                            "url": "/systemMgr"
+                        }
+                    ]
+                },
+                {
+                    "label": "二级菜单-02",
+                    "url": "/systemMgr"
+                }
+            ]
         },
         {
-            "label": "系统管理",
+            "label": "一级菜单-02",
             "url": "/systemMgr"
         }
     ]
