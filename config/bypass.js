@@ -29,7 +29,7 @@ function getResponsePath(method, url){
 
   let dataPath = path.resolve(__dirname, '../mock/', file);
 
-  return fs.readFileSync(dataPath)
+  return fs.readFileSync(dataPath, 'utf-8')
 }
 
 module.exports = getResponsePath

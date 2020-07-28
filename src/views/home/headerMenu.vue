@@ -1,7 +1,7 @@
 <template>
   <div class="menu-wrap-box">
     <section class="menu-box">
-      <nav v-for="item in data" :key="item.label">
+      <nav v-for="(item, index) in data" :key="index">
         {{ item.label }}
       </nav>
     </section>

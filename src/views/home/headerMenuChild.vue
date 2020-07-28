@@ -3,7 +3,7 @@
     <article v-for="(item, index) in menu" :key="index">
       <aside>{{ item.label }}</aside>
       <section>
-        <nav v-for="nav in item.child" :key="nav.label">
+        <nav v-for="(nav, i) in item.child" :key="i">
           {{ nav.label }}
         </nav>
       </section>
