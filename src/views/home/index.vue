@@ -39,6 +39,7 @@ export default {
     height: 50px;
     background: #00b1fd linear-gradient(-90deg, #0072f3, #00b1fd);
     display: flex;
+    z-index: 10;
 
     header {
       width: 200px;
@@ -54,6 +55,7 @@ export default {
   }
 
   > section {
+    z-index: 1;
     flex: 1;
   }
 }
