@@ -34,13 +34,6 @@ function getTotalScrollOffsetRoot(element: any) {
     return { width: width, height: height }
 }
 
-function getScroll(element: any){
-    return {
-        width: 0,
-        height: 0
-    }
-}
-
 /**
 * 节点在浏览器窗口中的位置
 * @param{domNode} element 起始节点
@@ -59,7 +52,7 @@ function getElementOffsetRoot(element: any) {
         current = current.offsetParent;
     }
 
-    let scroll = getScroll(element);
+    let scroll = getTotalScrollOffsetRoot(element);
     return {
         top: actualTop - scroll.height,
         left: actualLeft - scroll.width
