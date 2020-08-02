@@ -37,7 +37,7 @@ export default {
         pwd: this.pwd
       };
 
-      this.$api.login.login(param).then(res => {
+      this.$api.app.login(param).then(res => {
         if (res && res.r0 === true) {
           this.$router.push("/home");
         }

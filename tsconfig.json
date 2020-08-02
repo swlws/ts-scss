@@ -17,7 +17,9 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@log": ["src/log.ts"],
+      "@dom": ["src/dom.ts"]
     },
     "lib": [
       "esnext",

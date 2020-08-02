@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import { dateFormat } from "@/util/tool";
+import logger from '@log';
 
 Vue.use(Vuex);
 
@@ -23,15 +24,11 @@ const store = new Vuex.Store({
   modules: {}
 });
 
-const log = (name: string, obj: any) => {
-  console.info(`${dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss")} ${name}`);
-  console.log("    ", obj);
-};
 
 store.watch(
   state => state.height,
   (val, oldVal) => {
-    log("store.watch", { val, oldVal });
+    logger.info("store.watch", { val, oldVal });
   },
   {
     deep: true,
@@ -41,7 +38,7 @@ store.watch(
 
 store.subscribe(
   (mutation, state) => {
-    log("store.subscribe", {
+    logger.info("store.subscribe", {
       mutation,
       state
     });
@@ -53,7 +50,7 @@ store.subscribe(
 
 store.subscribeAction(
   (action, payload) => {
-    log("store.subscribeAction", {
+    logger.info("store.subscribeAction", {
       action,
       payload
     });

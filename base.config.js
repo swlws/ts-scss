@@ -32,6 +32,8 @@ function alias(config) {
   // 别名设置
   config.resolve.alias
     .set('@', resolve('src'))
+    .set('@log', resolve('src/util/log'))
+    .set('@dom', resolve('src/util/dom'))
 }
 module.exports.alias = alias;
 

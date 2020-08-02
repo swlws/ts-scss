@@ -7,20 +7,15 @@ if (process.env.VUE_APP_ENABLE_DEBUG === "true") {
     bar = false;
 }
 
-const log = (context: string, content: any) => {
+const log = (type: string, context: string, content: any) => {
     if (!bar) return;
+    if (!type) return;
 
     let date = dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
-    console.log(`${date} [context: ${context}] \n\t ${content}`);
-}
-
-const error = (context: string, content: any) => {
-    if (!bar) return;
-
-    let date = dateFormat(new Date(), 'yyyy-MM-dd hh:mm:ss');
-    console.error(`${date} [context: ${context}] \n\t ${content}`);
+    eval(`console.${type}`)(`${date} [context: ${context}] \n ${JSON.stringify(content, null, 4)}`);
 }
 
 export default {
-    log, error
+    info: log.bind(null, 'info'),
+    error: log.bind(null, 'error')
 }
