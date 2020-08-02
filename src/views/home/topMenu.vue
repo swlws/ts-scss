@@ -1,39 +1,34 @@
 <template>
   <div class="menu-wrap-box">
     <section class="menu-box">
-      <nav v-for="(item, index) in data" :key="index">
+      <nav
+        v-for="(item, index) in menu"
+        :key="index"
+        :class="{ 'nav-selected': index === selectedItemIndex }"
+        @click="clickEvent(index)"
+      >
         {{ item.label }}
       </nav>
     </section>
-    <footer class="child-menu-box">
-      <header-menu-child :menu="childMenu" />
-    </footer>
   </div>
 </template>
-<script>
-import HeaderMenuChild from "./headerMenuChild";
 
+<script>
 export default {
-  name: "headerMenu",
-  components: { HeaderMenuChild },
-  data() {
-    return {
-      data: [],
-      childMenu: []
-    };
-  },
-  created() {
-    this.initData();
+  name: "topMenu",
+  props: {
+    menu: {
+      type: Array,
+      default: () => []
+    },
+    selectedItemIndex: {
+      type: Number,
+      default: 0
+    }
   },
   methods: {
-    initData() {
-      this.$api.home.menu().then(res => {
-        if (res && res.r0 === true) {
-          this.data = res.data;
-
-          this.childMenu = this.data[0].child;
-        }
-      });
+    clickEvent(index) {
+      this.$emit("change", index);
     }
   }
 };
@@ -52,12 +47,17 @@ export default {
       font-size: 16px;
       color: #fff;
       padding: 10px 20px;
+      border-bottom: 2px solid transparent;
       transition: all 0.3s;
 
       &:hover {
         cursor: pointer;
         color: #000;
       }
+    }
+    .nav-selected {
+      border-color: #fff;
+      color: #000;
     }
   }
 }

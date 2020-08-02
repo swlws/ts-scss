@@ -19,3 +19,7 @@ interface ruleErrorCode{
   key: String,
   msg: String
 }
+
+// alais的声明
+declare module '@log'
+declare module '@dom'

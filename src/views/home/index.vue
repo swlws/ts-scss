@@ -5,26 +5,66 @@
         <header-logo />
       </header>
       <section>
-        <header-menu />
+        <top-menu
+          :menu="topMenu"
+          :selected-item-index.sync="selectedTopMenuItemIndex"
+          @change="topMenuChange"
+        />
       </section>
       <footer></footer>
     </header>
-    <section>
-      <router-view></router-view>
-    </section>
+    <article>
+      <aside>
+        <child-menu :menu="childMenuInfo" />
+      </aside>
+      <section>
+        <router-view></router-view>
+      </section>
+    </article>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import HeaderLogo from "./headerLogo";
-import HeaderMenu from "./headerMenu";
+import TopMenu from "./topMenu";
+import ChildMenu from "./childMenu";
 
 export default {
   name: "home",
   components: {
     HeaderLogo,
-    HeaderMenu
-  }
+    TopMenu,
+    ChildMenu
+  },
+  data() {
+    return {
+      selectedTopMenuItemIndex: 0
+    };
+  },
+  created() {
+    this.queryMenu(this.$api.home.menu);
+  },
+  methods: {
+    ...mapActions(["queryMenu"]),
+    topMenuChange(selecedItemIndex) {
+      this.selectedTopMenuItemIndex = selecedItemIndex;
+    }
+  },
+  computed: mapState({
+    menu: state => state.appStore.menu,
+    topMenu() {
+      return this.menu.map(item => {
+        const menu = { ...item };
+        delete menu.child;
+
+        return menu;
+      });
+    },
+    childMenuInfo() {
+      return (this.menu[this.selectedTopMenuItemIndex] || {}).child;
+    }
+  })
 };
 </script>
 
@@ -54,9 +94,21 @@ export default {
     }
   }
 
-  > section {
+  > article {
     z-index: 1;
     flex: 1;
+    display: flex;
+    overflow: auto;
+
+    aside {
+      height: 100%;
+      width: 200px;
+      overflow: auto;
+    }
+    section {
+      flex: 1;
+      overflow: auto;
+    }
   }
 }
 </style>

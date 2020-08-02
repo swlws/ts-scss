@@ -18,9 +18,14 @@ if (navigator) {
 
 // 存在，则返回对应的转移字符；不存在，返回path
 const $t = (path: string): string => {
-  if (!lang) return path;
+  if (!lang) return path; 
+  if(!path) return "";
 
-  return lang[path];
+  let str:FreeObject | string = path.split('.').reduce((pre, next) => {
+    return pre[next] || {};
+  }, lang);
+
+  return typeof str === 'string' ? str : path;
 };
 
 export default {

@@ -1,4 +1,4 @@
-import logger from '@log'
+import logger from "@log";
 import myAxios from "./httplib";
 
 const ruleError = (key: string, pre?: string) => {
@@ -22,7 +22,7 @@ function paramRuleValidate(rule: FreeObject, pre?: string): Array<ruleErrorCode>
     const v = rule[key];
 
     if (typeof v === "object") {
-      !v.type ? res.push({key: key, msg: 'The Type Field Must Be Specified'}) : '';
+      !v.type ? res.push({ key: key, msg: 'The Type Field Must Be Specified' }) : '';
       !types.includes(v.type) ? res.push(ruleError(key, pre)) : '';
     } else if (!types.includes(v)) {
       res.push(ruleError(key, pre));
@@ -62,7 +62,7 @@ function parseApi(apiConfig: FreeObject): FreeObject {
       let { url, method, params } = module[funcName];
 
       const paramRuleValidateRes = paramRuleValidate(params);
-      if(paramRuleValidateRes.length > 0){
+      if (paramRuleValidateRes.length > 0) {
         logger.error('Verification Of Http Request Parameter Rules Failed', paramRuleValidateRes)
         return;
       }
