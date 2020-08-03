@@ -1,43 +1,47 @@
 <template>
-  <div class="child-menu-box">
+  <div
+    class="child-menu-box"
+    v-if="menu.length > 0"
+    :style="{ width: closed ? '40px' : '200px' }"
+  >
     <article>
-      <section v-for="(group, gIndex) in menu" :key="gIndex">
-        <header
-          :class="{
-            'second-menu-item': true,
-            'selected-menu-item': groupIndex === gIndex
-          }"
-          @click="leafMenuItemClick(group, gIndex)"
-        >
-          {{ group.label }}
-        </header>
-        <aside
-          v-if="group.child"
-          :class="{ 'nav-group': true }"
-          :style="{
-            height:
-              groupIndex === gIndex
-                ? (group.child || []).length * 30 + 'px'
-                : '0px'
-          }"
-        >
-          <nav
-            v-for="(nav, index) in group.child"
-            :key="index"
+      <div v-show="!closed">
+        <section v-for="(group, gIndex) in menu" :key="gIndex">
+          <header
             :class="{
-              'third-menu-item': true,
-              'selected-menu-item': itemIndex === index
+              'second-menu-item': true,
+              'selected-menu-item': groupIndex === gIndex
             }"
-            @click="leafMenuItemClick(nav, gIndex, index)"
+            @click="leafMenuItemClick(group, gIndex)"
           >
-            {{ nav.label }}
-          </nav>
-        </aside>
-      </section>
+            {{ group.label }}
+          </header>
+          <aside
+            v-if="group.child"
+            :class="{ 'nav-group': true }"
+            :style="{
+              height:
+                groupIndex === gIndex
+                  ? (group.child || []).length * 30 + 'px'
+                  : '0px'
+            }"
+          >
+            <nav
+              v-for="(nav, index) in group.child"
+              :key="index"
+              :class="{
+                'third-menu-item': true,
+                'selected-menu-item': itemIndex === index
+              }"
+              @click="leafMenuItemClick(nav, gIndex, index)"
+            >
+              {{ nav.label }}
+            </nav>
+          </aside>
+        </section>
+      </div>
     </article>
-    <footer>
-      123
-    </footer>
+    <footer @click="closed = !closed"></footer>
   </div>
 </template>
 
@@ -53,12 +57,14 @@ export default {
   data() {
     return {
       groupIndex: 0,
-      itemIndex: 0
+      itemIndex: 0,
+      closed: false
     };
   },
   methods: {
     leafMenuItemClick(item, groupIndex, index) {
-      this.groupIndex = this.groupIndex === groupIndex ? -1 : groupIndex;
+      this.groupIndex =
+        index === undefined && this.groupIndex === groupIndex ? -1 : groupIndex;
       this.itemIndex = index;
     }
   },
@@ -85,7 +91,7 @@ export default {
 @mixin menuItem {
   font-size: 14px;
   color: #666666;
-  padding: 5px 0px;
+  padding: 5px 10px;
   height: 20px;
   @include overflowText;
 
@@ -109,30 +115,30 @@ export default {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  transition: all 0.3s;
 
   > article {
     flex: 1;
     .second-menu-item {
       @include menuItem;
-      padding: 0px 5px;
     }
     .third-menu-item {
       @include menuItem;
-      padding-left: 20px;
+      padding-left: 30px;
     }
     .selected-menu-item {
       @include menuItemHover;
     }
     .nav-group {
       height: 0px;
-      padding-top: 5px;
       overflow: hidden;
       transition: all 0.3s;
     }
   }
 
   > footer {
-    height: 30px;
+    cursor: pointer;
+    height: 40px;
     background-color: rgba(0, 0, 0, 0.8);
   }
 }

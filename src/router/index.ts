@@ -20,8 +20,18 @@ const routes: Array<RouteConfig> = [
   }
 ];
 
-const router = new VueRouter({
-  routes
-});
+const router = new VueRouter();
+
+let alreadyParseRouter = false;
+router.beforeEach((to, from, next) => {
+  console.log(alreadyParseRouter)
+  if(alreadyParseRouter === false){
+    router.addRoutes(routes);
+    alreadyParseRouter = true;
+    router.push({path: to.path})
+  }else{
+    next()
+  }
+})
 
 export default router;

@@ -1,7 +1,7 @@
 import { UPDATE_MENU } from '../mutations';
 import { QUERY_MENU } from '../actions';
 
-const appStore = {
+const appStore:any = {
     state: {
         menu: []
     },
