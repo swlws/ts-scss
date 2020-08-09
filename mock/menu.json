@@ -2,96 +2,52 @@
     "r0": true,
     "data": [
         {
-            "label": "一级菜单",
+            "label": "导航",
             "url": "/dashboard",
-            "child": [
+            "recommendList": [
                 {
-                    "label": "二级菜单",
-                    "url": "/systemMgr",
-                    "child": [
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        }
-                    ]
+                    "label": "推荐项",
+                    "url": "/systemMgr"
                 },
                 {
-                    "label": "二级菜单",
-                    "url": "/systemMgr",
-                    "child": [
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        }
-                    ]
+                    "label": "推荐项",
+                    "url": "/systemMgr"
+                }
+            ],
+            "opList": [
+                {
+                    "label": "操作",
+                    "url": "/systemMgr"
                 },
                 {
-                    "label": "二级菜单",
-                    "url": "/systemMgr",
-                    "child": [
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        },
-                        {
-                            "label": "三级菜单",
-                            "url": "/systemMgr"
-                        }
-                    ]
+                    "label": "操作",
+                    "url": "/systemMgr"
                 }
             ]
         },
         {
-            "label": "一级菜单",
-            "url": "/systemMgr"
+            "label": "导航",
+            "url": "/systemMgr",
+            "recommendList": [
+                {
+                    "label": "推荐项",
+                    "url": "/systemMgr"
+                },
+                {
+                    "label": "推荐项",
+                    "url": "/systemMgr"
+                }
+            ],
+            "opList": [
+                {
+                    "label": "操作",
+                    "url": "/systemMgr"
+                },
+                {
+                    "label": "操作",
+                    "url": "/systemMgr"
+                }
+            ]
         }
     ]
 }

@@ -4,6 +4,8 @@ declare module "*.vue" {
 }
 
 declare module "qs";
+declare module "lodash/upperFirst";
+declare module "lodash/camelCase";
 
 declare module '*.json' {
   const value: any;

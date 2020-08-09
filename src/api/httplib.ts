@@ -15,6 +15,10 @@ const instance = axios.create({
   baseURL: "",
   timeout: 1000,
   // headers: { 'Content-Type': 'application/json' },
+  headers: { auth: {
+    username: 'elastic',
+    password: 'SWLgg@123'
+  }},
   responseType: "json",
   transformRequest: [
     data => {

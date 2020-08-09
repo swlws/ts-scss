@@ -14,12 +14,7 @@
       <footer></footer>
     </header>
     <article>
-      <aside>
-        <child-menu :menu="childMenuInfo" />
-      </aside>
-      <section>
-        <router-view></router-view>
-      </section>
+      <router-view></router-view>
     </article>
   </div>
 </template>
@@ -28,14 +23,12 @@
 import { mapState, mapActions } from "vuex";
 import HeaderLogo from "./headerLogo";
 import TopMenu from "./topMenu";
-import ChildMenu from "./childMenu";
 
 export default {
   name: "home",
   components: {
     HeaderLogo,
-    TopMenu,
-    ChildMenu
+    TopMenu
   },
   data() {
     return {
@@ -60,9 +53,6 @@ export default {
 
         return menu;
       });
-    },
-    childMenuInfo() {
-      return (this.menu[this.selectedTopMenuItemIndex] || {}).child;
     }
   })
 };

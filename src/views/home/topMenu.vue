@@ -1,36 +1,37 @@
 <template>
   <div class="menu-wrap-box">
     <section class="menu-box">
-      <nav
+      <menu-item
         v-for="(item, index) in menu"
         :key="index"
-        :class="{ 'nav-selected': index === selectedItemIndex }"
-        @click="clickEvent(index)"
-      >
-        {{ item.label }}
-      </nav>
+        :info="item"
+        :index="'' + index"
+        :checked-index.sync="checkedIndex"
+      />
     </section>
   </div>
 </template>
 
 <script>
+import MenuItem from "./topMenuItem";
+
 export default {
   name: "topMenu",
+  components: {
+    MenuItem
+  },
   props: {
     menu: {
       type: Array,
       default: () => []
-    },
-    selectedItemIndex: {
-      type: Number,
-      default: 0
     }
   },
-  methods: {
-    clickEvent(index) {
-      this.$emit("change", index);
-    }
-  }
+  data() {
+    return {
+      checkedIndex: ""
+    };
+  },
+  methods: {}
 };
 </script>
 <style lang="scss" scoped>
@@ -42,23 +43,6 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    nav {
-      font-size: 16px;
-      color: #fff;
-      padding: 10px 20px;
-      border-bottom: 2px solid transparent;
-      transition: all 0.3s;
-
-      &:hover {
-        cursor: pointer;
-        color: #000;
-      }
-    }
-    .nav-selected {
-      border-color: #fff;
-      color: #000;
-    }
   }
 }
 </style>

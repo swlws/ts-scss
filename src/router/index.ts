@@ -24,7 +24,6 @@ const router = new VueRouter();
 
 let alreadyParseRouter = false;
 router.beforeEach((to, from, next) => {
-  console.log(alreadyParseRouter)
   if(alreadyParseRouter === false){
     router.addRoutes(routes);
     alreadyParseRouter = true;

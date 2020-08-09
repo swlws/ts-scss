@@ -47,7 +47,7 @@
 
 <script>
 export default {
-  name: "childMenu",
+  name: "BaseNavV1",
   props: {
     menu: {
       type: Array,

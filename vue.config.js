@@ -72,6 +72,13 @@ module.exports = {
 
           return undefined;
         }
+      },
+      '/es': {
+        target: 'https://es-dnp0iy6m.public.tencentelasticsearch.com:9200/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/es': ''
+        }
       }
     }
   }
