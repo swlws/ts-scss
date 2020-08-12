@@ -30,11 +30,8 @@
 </template>
 
 <script>
-import BaseSvgIcon from "@/components/BaseSvgIcon/index";
-
 export default {
   name: "topMenuItem",
-  components: { BaseSvgIcon },
   props: {
     info: {
       type: Object,

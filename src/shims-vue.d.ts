@@ -3,15 +3,21 @@ declare module "*.vue" {
   export default Vue;
 }
 
-declare module "qs";
-declare module "lodash/upperFirst";
-declare module "lodash/camelCase";
-
 declare module '*.json' {
   const value: any;
   export default value
 }
 
+// 模块声明
+declare module "qs";
+declare module "Base64";
+
+// alais的声明
+declare module '@log'
+declare module '@dom'
+declare module '@tool'
+
+// 对象
 interface FreeObject {
   [x: string]: any;
 }
@@ -21,7 +27,3 @@ interface ruleErrorCode{
   key: String,
   msg: String
 }
-
-// alais的声明
-declare module '@log'
-declare module '@dom'

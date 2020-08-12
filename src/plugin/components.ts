@@ -1,5 +1,7 @@
-import upperFirst from 'lodash/upperFirst';
-import camelCase from 'lodash/camelCase';
+// import upperFirst from 'lodash/upperFirst';
+// import camelCase from 'lodash/camelCase';
+
+import { upperFirst,  camelCase} from '@tool'
 
 /**
  * 将/src/components目录下的组件定义为全局组件
