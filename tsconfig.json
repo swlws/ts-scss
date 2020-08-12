@@ -19,7 +19,8 @@
         "src/*"
       ],
       "@log": ["src/log.ts"],
-      "@dom": ["src/dom.ts"]
+      "@dom": ["src/dom.ts"],
+      "@tool": ["src/tool.ts"],
     },
     "lib": [
       "esnext",
