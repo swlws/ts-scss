@@ -31,7 +31,7 @@ export default {
     return {
       checkedProps: new Set(this.controlColumns.reduce((pre, next) => {
         pre.push(next.prop)
-      },[]));
+      },[]))
     };
   },
   methods: {

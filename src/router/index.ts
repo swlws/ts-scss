@@ -4,6 +4,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 Vue.use(VueRouter);
 
 const myImport = (file: string) => () => import(`../views${file}`)
+const testImport = (file: string) => () => import(`../viewsTest${file}`)
 
 const routes: Array<RouteConfig> = [
   {
@@ -16,7 +17,13 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/home",
-    component: myImport("/home/index.vue")
+    component: myImport("/home/index.vue"),
+    children: [
+      {
+        path: '/test/datagrid',
+        component: testImport("/datagrid.vue")
+      }
+    ]
   }
 ];
 

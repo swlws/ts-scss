@@ -99,7 +99,7 @@ export default {
     return {
     	checkedProps: new Set(this.columns.reduce((pre, next) => {
     		pre.push(next.prop)
-    	},[]));
+    	},[]))
     };
   },
   methods: {
@@ -113,13 +113,13 @@ export default {
   },
   computed: {
   	renderColumns(){
-  		let tmp = {...this.columns};
+  		let tmp = [...this.columns];
   		return tmp.filter(item => {
-  			return this.checkedProps.includes(item.prop)；
+  			return this.checkedProps.has(item.prop)
   		})
   	},
   	controlColumns(){
-  		let tmp = {...this.columns};
+  		let tmp = [...this.columns];
   		return tmp.map(({prop, label}) => {
   			return {prop, label}
   		})
