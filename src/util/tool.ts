@@ -39,6 +39,16 @@ export function deepClone(obj: any) {
   return obj;
 }
 
+export function rgbToHex(color: string){
+  let values = color.replace(/(rgba?|[\(\)]+|\s+)/g,'').split(',');
+
+  let r = parseInt(values[0]) || 0;
+  let g = parseInt(values[1]) || 0;
+  let b = parseInt(values[2]) || 0;
+
+  return ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0');
+}
+
 /**
 * hex转rgba
 * @param {String} color

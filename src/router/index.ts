@@ -22,22 +22,29 @@ const routes: Array<RouteConfig> = [
       {
         path: '/test/datagrid',
         component: testImport("/datagrid.vue")
+      },
+      {
+        path: '/test/svgIcon',
+        component: testImport("/svgIcon.vue")
       }
     ]
   }
 ];
 
-const router = new VueRouter();
+const router = new VueRouter({
+  mode: 'hash',
+  routes
+});
 
-let alreadyParseRouter = false;
-router.beforeEach((to, from, next) => {
-  if(alreadyParseRouter === false){
-    router.addRoutes(routes);
-    alreadyParseRouter = true;
-    router.push({path: to.path})
-  }else{
-    next()
-  }
-})
+// let alreadyParseRouter = false;
+// router.beforeEach((to, from, next) => {
+//   if(alreadyParseRouter === false){
+//     router.addRoutes(routes);
+//     alreadyParseRouter = true;
+//     router.push({path: to.path})
+//   }else{
+//     next()
+//   }
+// })
 
 export default router;

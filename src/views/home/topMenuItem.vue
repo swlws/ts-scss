@@ -93,6 +93,7 @@ export default {
     padding: 10px 0px;
     box-shadow: 0px 0px 10px 1px #e8e8e8;
     transition: all 0.3s;
+    background-color: #fff;
 
     .recommend-box {
       padding-bottom: 10px;

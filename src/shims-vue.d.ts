@@ -11,6 +11,7 @@ declare module '*.json' {
 // 模块声明
 declare module "qs";
 declare module "Base64";
+declare module "element-ui";
 
 // alais的声明
 declare module '@log'

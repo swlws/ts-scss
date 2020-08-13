@@ -6,23 +6,26 @@
       :highlight-current-row="true"
       style="width:100%;"
       :height="height"
-      @select="(data) => this.$emit('select', data)"
-      @select-all="(data) => this.$emit('select-all', data)"
-      @row-click="(row) => this.$emit('row-click', row)"
-      @row-dblclick="(row) => this.$emit('row-db-click', row)"
-      @sort-change="({column, prop, order}) => this.$emit('sort-change', column, prop, order)"
+      @select="data => this.$emit('select', data)"
+      @select-all="data => this.$emit('select-all', data)"
+      @row-click="row => this.$emit('row-click', row)"
+      @row-dblclick="row => this.$emit('row-db-click', row)"
+      @sort-change="
+        ({ column, prop, order }) =>
+          this.$emit('sort-change', column, prop, order)
+      "
       size="medium"
     >
       <!-- 遍历父组件传入的列属性 -->
       <template v-for="(item, index) of renderColumns">
         <!-- expand列 -->
         <component
-          v-if="item.type==='expand'"
+          v-if="item.type === 'expand'"
           :key="index"
           :is="'el-table-column'"
           :type="item.type"
           :min-width="item.width"
-          :label="item.label "
+          :label="item.label"
           :prop="item.prop"
           :formatter="item.formatter"
           :sortable="item.sortable"
@@ -38,7 +41,7 @@
           :key="index"
           :is="'el-table-column'"
           :type="item.type"
-          :label="item.label || 'index'"
+          :label="item.label"
           :prop="item.prop"
           :align="item.align"
           :header-align="item.header_align"
@@ -66,64 +69,69 @@
   </div>
 </template>
 <script>
-import ColumnControl from './columnControl';
+import ColumnControl from "./columnControl";
 
 export default {
-  name: 'BaseDataGrid',
+  name: "BaseDataGrid",
   components: {
-    ColumnControl,
+    ColumnControl
   },
   props: {
     data: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     columns: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     height: {
       type: [String, Number, null],
-      default: '100%',
+      default: "100%"
     },
     currentPage: {
       type: Number,
-      default: 1,
+      default: 1
     },
     pageSize: {
       type: Number,
-      default: 20,
-    },
+      default: 20
+    }
   },
   data() {
     return {
-    	checkedProps: new Set(this.columns.reduce((pre, next) => {
-    		pre.push(next.prop)
-    	},[]))
+      checkedProps: this.columns.reduce((pre, next) => {
+        pre.push(next.prop);
+        return pre;
+      }, [])
     };
   },
   methods: {
     toggleFieldEvent(prop) {
-    	let checkedProps = this.checkedProps;
-      checkedProps.has(prop) ? checkedProps.delete(prop) : checkedProps.add(prop);
+      const checkedProps = this.checkedProps;
+      const index = checkedProps.indexOf(prop);
+
+      index > -1 ? checkedProps.splice(index, 1) : checkedProps.push(prop);
     },
     indexFormatter(index) {
       return (this.currentPage - 1) * this.pageSize + index + 1;
-    },
+    }
   },
   computed: {
-  	renderColumns(){
-  		let tmp = [...this.columns];
-  		return tmp.filter(item => {
-  			return this.checkedProps.has(item.prop)
-  		})
-  	},
-  	controlColumns(){
-  		let tmp = [...this.columns];
-  		return tmp.map(({prop, label}) => {
-  			return {prop, label}
-  		})
-  	},
+    renderColumns() {
+      const tmp = [...this.columns];
+      return tmp.filter(item => {
+        return !item.prop || this.checkedProps.indexOf(item.prop) > -1;
+      });
+    },
+    controlColumns() {
+      const tmp = [...this.columns];
+      return tmp
+        .map(({ prop, label }) => {
+          return { prop, label };
+        })
+        .filter(({ prop }) => !!prop);
+    }
   }
 };
 </script>
