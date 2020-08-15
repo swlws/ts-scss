@@ -4,7 +4,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 Vue.use(VueRouter);
 
 const myImport = (file: string) => () => import(`../views${file}`)
-const testImport = (file: string) => () => import(`../viewsTest${file}`)
+const testImport = (file: string) => () => import(`../viewsV2${file}`)
 
 const routes: Array<RouteConfig> = [
   {
@@ -13,18 +13,18 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/login",
-    component: myImport("/login/index.vue")
+    component: myImport("/Login/index.vue")
   },
   {
     path: "/home",
-    component: myImport("/home/index.vue"),
+    component: () => import("@/businessComponents/LayoutV1/index.vue"),
     children: [
       {
-        path: '/test/datagrid',
+        path: '/v2/datagrid',
         component: testImport("/datagrid.vue")
       },
       {
-        path: '/test/svgIcon',
+        path: '/v2/svgIcon',
         component: testImport("/svgIcon.vue")
       }
     ]

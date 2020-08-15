@@ -44,7 +44,7 @@
           :label="item.label"
           :prop="item.prop"
           :align="item.align"
-          :header-align="item.header_align"
+          :header-align="item.headerAlign"
           :formatter="item.formatter"
           :sortable="item.sortable"
           :show-overflow-tooltip="true"
@@ -53,7 +53,7 @@
         ></component>
       </template>
 
-      <el-table-column fixed="right" :width="50">
+      <el-table-column :min-width="50" header-align="right">
         <template slot="header">
           <ColumnControl
             :control-columns="controlColumns"
@@ -135,28 +135,19 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .data-grid-body-wrap {
   height: 100%;
   width: 100%;
-}
 
+  /deep/ .el-table__header th {
+    color: #666666;
+    font-weight: bolder;
+  }
+}
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .data-grid-body-wrap {
     position: absolute;
   }
-}
-.data-grid-table-expand {
-  font-size: 0;
-}
-.data-grid-table-expand label {
-  width: 90px;
-  color: #99a9bf;
-}
-.data-grid-table-expand .el-form-item {
-  margin-right: 0;
-  margin-bottom: 0;
-  width: 50%;
-  font-weight: bold;
 }
 </style>

@@ -7,6 +7,7 @@
         </header>
         <section>
           <div>
+            <base-svg-icon icon="account" />
             <input
               type="text"
               v-model="account"
@@ -14,6 +15,7 @@
             />
           </div>
           <div>
+            <base-svg-icon icon="password" />
             <input
               type="text"
               v-model="pwd"
@@ -95,11 +97,14 @@ $width: 200px;
       section {
         padding: 30px 0px;
         div {
-          margin: 10px 0px;
+          border-bottom: 1px solid #e8e8e8;
           input {
+            margin: 5px 0px 5px 10px;
             width: $width;
             height: 25px;
             border-radius: 5px;
+            border: none;
+            outline: none;
           }
         }
       }
