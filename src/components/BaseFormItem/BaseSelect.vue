@@ -25,7 +25,8 @@
 
     <div slot="reference" class="title-box">
       <p>{{ realTitle }}</p>
-      <i class="icon el-icon-arrow-down"></i>
+      <i class="el-icon-arrow-down"></i>
+      <i @click.stop="closeEvent" class="el-icon-circle-close"></i>
     </div>
   </el-popover>
 </template>
@@ -68,6 +69,9 @@ export default {
     };
   },
   methods: {
+    closeEvent() {
+      this.$emit("close", Object.freeze(this.$props));
+    },
     toggleOption(prop) {
       const index = this.pValue.indexOf(prop);
 
@@ -126,20 +130,22 @@ export default {
 .title-box {
   color: #666666;
   margin: 0px 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 12px;
   cursor: pointer;
   p {
-    display: inline-block;
-    font-size: 12px;
-    line-height: 12px;
     margin: 0px 10px 0px 0px;
     padding: 0px;
     max-width: 100px;
     @include test-over;
   }
-  .icon {
-    font-size: 12px;
+  i {
+    padding: 0px 2px;
   }
 }
+
 .content-box {
   header {
     padding: 10px 0px;

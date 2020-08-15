@@ -7,11 +7,29 @@
         :name="inputConfig.name"
       />
 
+      <base-input-scope
+        :id="inputScopeConfig.id"
+        :value.sync="inputScopeConfig.value"
+        :name="inputScopeConfig.name"
+      />
+
       <base-select
         :id="selectConfig.id"
         :value.sync="selectConfig.value"
         :name="selectConfig.name"
         :options="selectConfig.options"
+      />
+
+      <base-date
+        :id="dateConfig.id"
+        :value.sync="dateConfig.value"
+        :name="dateConfig.name"
+      />
+
+      <base-date-scope
+        :id="dateScopeConfig.id"
+        :value.sync="dateScopeConfig.value"
+        :name="dateScopeConfig.name"
       />
     </header>
 
@@ -23,11 +41,20 @@
 
 <script>
 import BaseInput from "@/components/BaseFormItem/BaseInput";
+import BaseInputScope from "@/components/BaseFormItem/BaseInputScope";
 import BaseSelect from "@/components/BaseFormItem/BaseSelect";
+import BaseDate from "@/components/BaseFormItem/BaseDate";
+import BaseDateScope from "@/components/BaseFormItem/BaseDateScope";
 
 export default {
   name: "Datagrid",
-  components: { BaseInput, BaseSelect },
+  components: {
+    BaseInput,
+    BaseInputScope,
+    BaseSelect,
+    BaseDate,
+    BaseDateScope
+  },
   data() {
     return {
       columns: [
@@ -61,13 +88,18 @@ export default {
         { a: "a", b: "b", c: "c" }
       ],
       inputConfig: {
-        id: "name",
-        name: "姓名",
+        id: "input",
+        name: "输入框",
         value: ""
       },
+      inputScopeConfig: {
+        id: "inputScope",
+        name: "输入范围框",
+        value: []
+      },
       selectConfig: {
-        id: "name",
-        name: "属性",
+        id: "select",
+        name: "多选列表",
         value: [],
         options: [
           {
@@ -79,6 +111,16 @@ export default {
             label: "sex"
           }
         ]
+      },
+      dateConfig: {
+        id: "date",
+        name: "日期",
+        value: ""
+      },
+      dateScopeConfig: {
+        id: "dateScope",
+        name: "日期范围",
+        value: []
       }
     };
   }
