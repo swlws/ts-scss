@@ -69,7 +69,7 @@
   </div>
 </template>
 <script>
-import ColumnControl from "./columnControl";
+import ColumnControl from "./ColumnControl";
 
 export default {
   name: "BaseDataGrid",
@@ -89,13 +89,9 @@ export default {
       type: [String, Number, null],
       default: "100%"
     },
-    currentPage: {
+    indexBegin: {
       type: Number,
-      default: 1
-    },
-    pageSize: {
-      type: Number,
-      default: 20
+      default: 0
     }
   },
   data() {
@@ -114,7 +110,7 @@ export default {
       index > -1 ? checkedProps.splice(index, 1) : checkedProps.push(prop);
     },
     indexFormatter(index) {
-      return (this.currentPage - 1) * this.pageSize + index + 1;
+      return this.indexBegin + index + 1;
     }
   },
   computed: {

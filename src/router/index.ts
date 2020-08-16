@@ -17,11 +17,15 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/home",
-    component: () => import("@/businessComponents/LayoutV1/index.vue"),
+    component: () => import("@/businessComponents/ComLayoutV1/index.vue"),
     children: [
       {
-        path: '/v2/datagrid',
-        component: testImport("/datagrid.vue")
+        path: '/v2/dg1',
+        component: testImport("/dg1.vue")
+      },
+      {
+        path: '/v2/dg2',
+        component: testImport("/dg2.vue")
       },
       {
         path: '/v2/svgIcon',

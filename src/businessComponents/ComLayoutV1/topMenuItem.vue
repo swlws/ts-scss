@@ -77,6 +77,9 @@ export default {
     margin: 0px 10px;
     font-size: 16px;
     color: #333333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
 
     .icon {

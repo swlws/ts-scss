@@ -36,6 +36,11 @@
     <section>
       <base-data-grid :data="data" :columns="columns" />
     </section>
+    <base-pagination
+      :total="pagination.total"
+      :page-size="pagination.pageSize"
+      :page-num="pagination.pageNum"
+    />
   </div>
 </template>
 
@@ -45,6 +50,7 @@ import BaseInputScope from "@/components/BaseFormItem/BaseInputScope";
 import BaseSelect from "@/components/BaseFormItem/BaseSelect";
 import BaseDate from "@/components/BaseFormItem/BaseDate";
 import BaseDateScope from "@/components/BaseFormItem/BaseDateScope";
+import BasePagination from "@/components/BasePagination";
 
 export default {
   name: "Datagrid",
@@ -53,7 +59,8 @@ export default {
     BaseInputScope,
     BaseSelect,
     BaseDate,
-    BaseDateScope
+    BaseDateScope,
+    BasePagination
   },
   data() {
     return {
@@ -121,6 +128,11 @@ export default {
         id: "dateScope",
         name: "日期范围",
         value: []
+      },
+      pagination: {
+        total: 100,
+        pageSize: 5,
+        pageNum: 1
       }
     };
   }
