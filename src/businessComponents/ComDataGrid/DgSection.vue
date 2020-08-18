@@ -4,6 +4,7 @@
       :columns="realColumns"
       :data="realData"
       :height="realHeihgt"
+      :index-begin="indexBegin"
     />
   </div>
 </template>
@@ -19,6 +20,10 @@ export default {
         data: [], // 表格数据
         columns: [] // 字段渲染方式定义
       })
+    },
+    indexBegin: {
+      type: Number,
+      default: 0
     }
   },
   computed: {

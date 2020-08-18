@@ -136,9 +136,18 @@ export default {
   height: 100%;
   width: 100%;
 
-  /deep/ .el-table__header th {
+  /deep/ .el-table th {
+    height: 40px;
     color: #666666;
-    font-weight: bolder;
+    background-color: #f6f6f8;
+  }
+
+  /deep/ .hover-row,
+  /deep/ tr.hover-row > td {
+    background-color: #d3ebff;
+  }
+  /deep/ .current-row {
+   background-color: #4ea6ed; 
   }
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

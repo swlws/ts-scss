@@ -5,7 +5,7 @@
     </header>
 
     <section>
-      <dg-section :config="pSectionConfig" />
+      <dg-section :config="pSectionConfig" :index-begin="indexBegin" />
     </section>
 
     <footer>
@@ -125,6 +125,9 @@ export default {
         pageSize,
         pageNum
       };
+    },
+    indexBegin(){
+      return ( this.pFooterConfig.pageNum -1 ) * this.pFooterConfig.pageSize;
     }
   }
 };
