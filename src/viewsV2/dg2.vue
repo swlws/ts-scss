@@ -25,7 +25,8 @@ export default {
             type: 0,
             id: "input",
             name: "输入框",
-            value: ""
+            value: "",
+            fixed: true
           },
           {
             type: 1,
@@ -60,6 +61,26 @@ export default {
             id: "dateScope",
             name: "日期范围",
             value: []
+          }
+        ],
+        buttons: [
+          {
+            label: "按钮一",
+            handler: () => {
+              console.log("按钮一");
+            }
+          },
+          {
+            label: "按钮二",
+            handler: () => {
+              console.log("按钮二");
+            }
+          },
+          {
+            label: "按钮三",
+            handler: () => {
+              console.log("按钮三");
+            }
           }
         ]
       },

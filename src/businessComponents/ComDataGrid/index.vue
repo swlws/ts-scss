@@ -91,14 +91,16 @@ export default {
   },
   computed: {
     pHeaderConfig() {
-      let { show = true, list = [] } = this.searchConfig || {};
+      let { show = true, list = [], buttons = [] } = this.searchConfig || {};
 
       show = typeof show === "boolean" ? show : true;
       list = Array.isArray(list) ? list : [];
+      buttons = Array.isArray(buttons) ? buttons : [];
 
       return {
         show,
-        list
+        list,
+        buttons
       };
     },
     pSectionConfig() {
@@ -126,8 +128,8 @@ export default {
         pageNum
       };
     },
-    indexBegin(){
-      return ( this.pFooterConfig.pageNum -1 ) * this.pFooterConfig.pageSize;
+    indexBegin() {
+      return (this.pFooterConfig.pageNum - 1) * this.pFooterConfig.pageSize;
     }
   }
 };
