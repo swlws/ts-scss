@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ComDataGrid from "@/businessComponents/ComDataGrid";
+import ComDataGrid from "@business/ComDataGrid";
 
 export default {
   name: "dg2",

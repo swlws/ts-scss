@@ -17,7 +17,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/home",
-    component: () => import("@/businessComponents/ComLayoutV1/index.vue"),
+    component: () => import("@business/ComLayoutV1/index.vue"),
     children: [
       {
         path: '/v2/dg1',

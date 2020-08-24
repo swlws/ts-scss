@@ -135,7 +135,6 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 10px;
   display: flex;
   flex-direction: column;
 
@@ -144,11 +143,6 @@ export default {
   }
   > section {
     flex: auto;
-  }
-  > footer {
-    text-align: right;
-    padding-top: 5px;
-    height: 40px;
   }
 }
 </style>

@@ -35,6 +35,7 @@ function alias(config) {
     .set('@log', resolve('src/util/log'))
     .set('@dom', resolve('src/util/dom'))
     .set('@tool', resolve('src/util/tool'))
+    .set('@business', resolve('src/business'))
 }
 module.exports.alias = alias;
 
