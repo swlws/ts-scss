@@ -5,22 +5,23 @@
     </header>
 
     <section>
-      <dg-section :config="pSectionConfig" :index-begin="indexBegin" />
+      <base-data-grid
+        :bodyConfig="pSectionConfig"
+        :pageConfig="pFooterConfig"
+        @page-change="pageChangeEvent"
+      />
     </section>
-
-    <footer>
-      <dg-footer :config="pFooterConfig" @change="pageChangeEvent" />
-    </footer>
   </div>
 </template>
 
 <script>
 import DgHeader from "./DgHeader";
-import DgSection from "./DgSection";
-import DgFooter from "./DgFooter";
 
 export default {
   name: "ComDataGrid",
+  components: {
+    DgHeader
+  },
   props: {
     searchConfig: {
       type: Object,
@@ -46,11 +47,7 @@ export default {
       })
     }
   },
-  components: {
-    DgHeader,
-    DgSection,
-    DgFooter
-  },
+
   methods: {
     searchChangeEvent() {
       this.$nextTick(function() {
@@ -59,7 +56,6 @@ export default {
         );
         const param = this.collectParam();
         console.log(`[Param: ${JSON.stringify(param)}]`);
-
         this.$emit("change");
       });
     },
@@ -68,7 +64,6 @@ export default {
         console.log(
           `[From: Pagination] [Event: Change] [Next Action: Load data]`
         );
-
         const param = this.collectParam();
         console.log(`[Param: ${JSON.stringify(param)}]`);
         this.$emit("change");

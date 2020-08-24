@@ -1,158 +1,75 @@
 <template>
-  <div class="data-grid-body-wrap">
-    <el-table
-      ref="elTableRef"
-      :data="data"
-      :highlight-current-row="true"
-      style="width:100%;"
-      :height="height"
-      @select="data => this.$emit('select', data)"
-      @select-all="data => this.$emit('select-all', data)"
-      @row-click="row => this.$emit('row-click', row)"
-      @row-dblclick="row => this.$emit('row-db-click', row)"
-      @sort-change="
-        ({ column, prop, order }) =>
-          this.$emit('sort-change', column, prop, order)
-      "
-      size="medium"
-    >
-      <!-- 遍历父组件传入的列属性 -->
-      <template v-for="(item, index) of renderColumns">
-        <!-- expand列 -->
-        <component
-          v-if="item.type === 'expand'"
-          :key="index"
-          :is="'el-table-column'"
-          :type="item.type"
-          :min-width="item.width"
-          :label="item.label"
-          :prop="item.prop"
-          :formatter="item.formatter"
-          :sortable="item.sortable"
-          :show-overflow-tooltip="true"
-        >
-          <template slot-scope="props">
-            <slot name="expand" :row="props.row" />
-          </template>
-        </component>
-        <!--普通列-->
-        <component
-          v-else
-          :key="index"
-          :is="'el-table-column'"
-          :type="item.type"
-          :label="item.label"
-          :prop="item.prop"
-          :align="item.align"
-          :header-align="item.headerAlign"
-          :formatter="item.formatter"
-          :sortable="item.sortable"
-          :show-overflow-tooltip="true"
-          :index="indexFormatter"
-          :min-width="item.width"
-        ></component>
-      </template>
+  <div class="com-data-grid-box">
+    <section>
+      <dg-section :config="bodyConfig" :index-begin="indexBegin" />
+    </section>
 
-      <el-table-column :min-width="50" header-align="right">
-        <template slot="header">
-          <ColumnControl
-            :control-columns="controlColumns"
-            @toggle-field-event="toggleFieldEvent"
-          />
-        </template>
-      </el-table-column>
-
-      <template slot="empty">
-        nothing
-      </template>
-    </el-table>
+    <footer>
+      <dg-footer :config="pageConfig" @change="pageChangeEvent" />
+    </footer>
   </div>
 </template>
+
 <script>
-import ColumnControl from "./ColumnControl";
+import DgSection from "./DgSection";
+import DgFooter from "./DgFooter";
 
 export default {
   name: "BaseDataGrid",
-  components: {
-    ColumnControl
-  },
   props: {
-    data: {
-      type: Array,
-      default: () => []
+    bodyConfig: {
+      type: Object,
+      default: () => ({
+        height: "100%",
+        data: [], // 表格数据
+        columns: [] // 字段渲染方式定义
+      })
     },
-    columns: {
-      type: Array,
-      default: () => []
-    },
-    height: {
-      type: [String, Number, null],
-      default: "100%"
-    },
-    indexBegin: {
-      type: Number,
-      default: 0
+    pageConfig: {
+      type: Object,
+      default: () => ({
+        show: true,
+        total: 0,
+        pageSize: 10,
+        pageNum: 1
+      })
     }
   },
-  data() {
-    return {
-      checkedProps: this.columns.reduce((pre, next) => {
-        pre.push(next.prop);
-        return pre;
-      }, [])
-    };
+  components: {
+    DgSection,
+    DgFooter
   },
   methods: {
-    toggleFieldEvent(prop) {
-      const checkedProps = this.checkedProps;
-      const index = checkedProps.indexOf(prop);
-
-      index > -1 ? checkedProps.splice(index, 1) : checkedProps.push(prop);
-    },
-    indexFormatter(index) {
-      return this.indexBegin + index + 1;
+    pageChangeEvent() {
+      this.$nextTick(function() {
+        const { pageNum, pageSize } = this.pageConfig;
+        this.$emit("page-change", pageNum, pageSize);
+      });
     }
   },
   computed: {
-    renderColumns() {
-      const tmp = [...this.columns];
-      return tmp.filter(item => {
-        return !item.prop || this.checkedProps.indexOf(item.prop) > -1;
-      });
-    },
-    controlColumns() {
-      const tmp = [...this.columns];
-      return tmp
-        .map(({ prop, label }) => {
-          return { prop, label };
-        })
-        .filter(({ prop }) => !!prop);
+    indexBegin() {
+      return (this.pageConfig.pageNum - 1) * this.pageConfig.pageSize;
     }
   }
 };
 </script>
-<style scoped lang="scss">
-.data-grid-body-wrap {
-  height: 100%;
+
+<style lang="scss" scoped>
+.com-data-grid-box {
+  box-sizing: border-box;
   width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-  /deep/ .el-table th {
+  > section {
+    flex: auto;
+  }
+  > footer {
+    text-align: right;
+    padding-top: 5px;
     height: 40px;
-    color: #666666;
-    background-color: #f6f6f8;
-  }
-
-  /deep/ .hover-row,
-  /deep/ tr.hover-row > td {
-    background-color: #d3ebff;
-  }
-  /deep/ .current-row {
-   background-color: #4ea6ed; 
-  }
-}
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-  .data-grid-body-wrap {
-    position: absolute;
   }
 }
 </style>
