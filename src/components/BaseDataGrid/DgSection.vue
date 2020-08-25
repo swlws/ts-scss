@@ -1,10 +1,15 @@
 <template>
-  <div style="box-si;width: 100%;height: 100%;">
+  <div style="width: 100%;height: 100%;">
     <base-grid
-      :columns="realColumns"
-      :data="realData"
-      :height="realHeihgt"
+      :columns="config.columns"
+      :data="config.data"
+      :height="config.heihgt"
       :index-begin="indexBegin"
+      @select="data => this.$emit('select', data)"
+      @select-all="data => this.$emit('select-all', data)"
+      @row-click="row => this.$emit('row-click', row)"
+      @row-dblclick="row => this.$emit('row-db-click', row)"
+      @sort-change="({ column, prop, order }) =>this.$emit('sort-change', column, prop, order)"
     />
   </div>
 </template>
@@ -31,22 +36,5 @@ export default {
       default: 0
     }
   },
-  computed: {
-    realData() {
-      const { data = [] } = this.config || {};
-
-      return Array.isArray(data) ? data : [];
-    },
-    realColumns() {
-      const { columns = [] } = this.config || {};
-
-      return Array.isArray(columns) ? columns : [];
-    },
-    realHeihgt() {
-      const { height = undefined } = this.config || {};
-
-      return height === null ? null : height;
-    }
-  }
 };
 </script>
