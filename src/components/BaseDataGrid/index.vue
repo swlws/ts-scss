@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     checkEvent(data){
-      this.$emit('update:selection': data);
+      this.$emit('update:selection', data);
     },
     pageChangeEvent() {
       this.$nextTick(function() {

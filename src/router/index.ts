@@ -7,8 +7,12 @@ const myImport = (file: string) => () => import(`../views${file}`)
 const testImport = (file: string) => () => import(`../viewsV2${file}`)
 
 const routes: Array<RouteConfig> = [
+{
+    path: "/sb",
+        component: testImport("/sb.vue")
+  },
   {
-    path: "/",
+    path: "/login",
     redirect: '/login'
   },
   {
