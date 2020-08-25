@@ -8,8 +8,13 @@
 </template>
 
 <script>
+import BasePagination from './BasePagination';
+
 export default {
   name: "DgFooter",
+  components: {
+    BasePagination
+  },
   props: {
     config: {
       show: true,
@@ -19,8 +24,8 @@ export default {
     }
   },
   methods: {
-    changeEvent(pageNum, pageSize) {
-      this.$emit("change", pageNum, pageSize);
+    changeEvent( ) {
+      this.$emit("change");
     }
   }
 };

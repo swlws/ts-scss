@@ -1,6 +1,6 @@
 <template>
   <div style="box-si;width: 100%;height: 100%;">
-    <data-grid
+    <base-grid
       :columns="realColumns"
       :data="realData"
       :height="realHeihgt"
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import DataGrid from "./DataGrid";
+import BaseGrid from "./BaseGrid";
 
 export default {
   name: "DgSection",
   components: {
-    DataGrid
+    BaseGrid
   },
   props: {
     config: {
