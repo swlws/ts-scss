@@ -34,9 +34,8 @@ export default{
 	},
 	methods: {
 		closeEvent(){
+			this.$emit('close');
 			this.$emit('update:visible', false);
-			this.$destory(true);
-			this.$el.parentNode.removeChild(this.$el)
 		}
 	},
 	computed: {
@@ -57,9 +56,12 @@ export default{
 <style lang="scss" scoped>
 .sidebar-box{
 	position: fixed;
+	top: 0px;
+	left: 0px;
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.3);
+	z-index: 2000;
 
 	> article{
 		width: 400px;
@@ -68,6 +70,7 @@ export default{
 		display: flex;
 		flex-direction: column;
 		background-color: #fff;
+		animation: ease-in 0.3s 1 linear;
 
 		>header{
 			color: #333;
@@ -91,6 +94,15 @@ export default{
 			border-top: 1px solid #ccc;
 			height: 50px;
 		}
+	}
+}
+
+@keyframes ease-in{
+	from{
+		transform: translateX(100%);
+	}
+	to{
+		transform: translateX(0%);
 	}
 }
 </style>
