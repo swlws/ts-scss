@@ -3,36 +3,32 @@ import VueRouter, { RouteConfig } from "vue-router";
 
 Vue.use(VueRouter);
 
-const myImport = (file: string) => () => import(`../views${file}`)
-const testImport = (file: string) => () => import(`../viewsV2${file}`)
+const myImport = (file: string) => () => import(`../views${file}`);
+const testImport = (file: string) => () => import(`../viewsV2${file}`);
 
 const routes: Array<RouteConfig> = [
-{
+  {
     path: "/sb",
-        component: testImport("/sb.vue")
+    component: testImport("/sb.vue")
   },
   {
     path: "/login",
-    redirect: '/login'
-  },
-  {
-    path: "/login",
-    component: myImport("/Login/index.vue")
+    component: myImport("/login/index.vue")
   },
   {
     path: "/home",
     component: () => import("@business/ComLayoutV1/index.vue"),
     children: [
       {
-        path: '/v2/dg1',
+        path: "/v2/dg1",
         component: testImport("/dg1.vue")
       },
       {
-        path: '/v2/dg2',
+        path: "/v2/dg2",
         component: testImport("/dg2.vue")
       },
       {
-        path: '/v2/svgIcon',
+        path: "/v2/svgIcon",
         component: testImport("/svgIcon.vue")
       }
     ]
@@ -40,7 +36,7 @@ const routes: Array<RouteConfig> = [
 ];
 
 const router = new VueRouter({
-  mode: 'hash',
+  mode: "hash",
   routes
 });
 
