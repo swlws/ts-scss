@@ -1,6 +1,6 @@
 export default {
-    menu: {
-        url: '/api/menu',
-        method: 'get'
-    }
-}
+  menu: {
+    url: "/api/menu",
+    method: "get"
+  }
+};

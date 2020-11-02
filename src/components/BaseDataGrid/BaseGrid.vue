@@ -10,7 +10,10 @@
       @select-all="data => this.$emit('select-all', data)"
       @row-click="row => this.$emit('row-click', row)"
       @row-dblclick="row => this.$emit('row-db-click', row)"
-      @sort-change="({ column, prop, order }) =>this.$emit('sort-change', column, prop, order)"
+      @sort-change="
+        ({ column, prop, order }) =>
+          this.$emit('sort-change', column, prop, order)
+      "
       size="medium"
     >
       <!-- 遍历父组件传入的列属性 -->
@@ -144,7 +147,7 @@ export default {
     background-color: #d3ebff;
   }
   /deep/ .current-row {
-   background-color: #4ea6ed; 
+    background-color: #4ea6ed;
   }
 }
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {

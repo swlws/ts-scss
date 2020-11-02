@@ -1,6 +1,6 @@
 export default {
-    serviceStatus: {
-        url: '/es',
-        method: 'get'
-    }
-}
+  serviceStatus: {
+    url: "/es",
+    method: "get"
+  }
+};

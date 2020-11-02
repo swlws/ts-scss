@@ -30,7 +30,7 @@ module.exports = {
 
     if(isProduction){
       base.compression(config);
-      base.spliteChunks(config);
+      base.splitChunks(config);
     }
 
     // analyzer
@@ -60,12 +60,14 @@ module.exports = {
     contentBase: resolve("public"), // 上下文路径
     proxy: {
       "/api": {
-        target: "http://14.18.16.158:9000/",
+        target: "http://127.0.0.1/",
         changeOrigin: true,
         bypass: function(req, res) {
+          console.log('---', req.url)
           const data = bypass(req.method.toLowerCase(), req.url);
 
           if (data) {
+            console.log(data)
             res.end(data);
             return false;
           }

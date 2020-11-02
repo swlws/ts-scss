@@ -12,7 +12,10 @@ const ruleError = (key: string, pre?: string) => {
  * 参数语法的校验，仅支持五种类型String, Number, Boolean, Array, Object
  * @param rule
  */
-function paramRuleValidate(rule: FreeObject, pre?: string): Array<ruleErrorCode> {
+function paramRuleValidate(
+  rule: FreeObject,
+  pre?: string
+): Array<ruleErrorCode> {
   if (!rule) return [] as Array<ruleErrorCode>;
 
   const types = [String, Number, Boolean, Array, Object];
@@ -22,8 +25,10 @@ function paramRuleValidate(rule: FreeObject, pre?: string): Array<ruleErrorCode>
     const v = rule[key];
 
     if (typeof v === "object") {
-      !v.type ? res.push({ key: key, msg: 'The Type Field Must Be Specified' }) : '';
-      !types.includes(v.type) ? res.push(ruleError(key, pre)) : '';
+      !v.type
+        ? res.push({ key: key, msg: "The Type Field Must Be Specified" })
+        : "";
+      !types.includes(v.type) ? res.push(ruleError(key, pre)) : "";
     } else if (!types.includes(v)) {
       res.push(ruleError(key, pre));
     }
@@ -32,12 +37,12 @@ function paramRuleValidate(rule: FreeObject, pre?: string): Array<ruleErrorCode>
 }
 
 function collectApis(): FreeObject {
-  let apis: FreeObject = {};
+  const apis: FreeObject = {};
 
-  const requireComponent = require.context('./modules', false, /(.*)\.ts$/);
+  const requireComponent = require.context("./modules", false, /(.*)\.ts$/);
   requireComponent.keys().forEach(fileName => {
-    let matchModuleName: any[] = fileName.match(/^\.\/(.*)\.ts$/) || [];
-    let moduleName = matchModuleName[1];
+    const matchModuleName: any[] = fileName.match(/^\.\/(.*)\.ts$/) || [];
+    const moduleName = matchModuleName[1];
     if (!moduleName) return;
 
     const componentConfig = requireComponent(fileName);
@@ -45,7 +50,7 @@ function collectApis(): FreeObject {
     if (!defaultExport) return;
 
     apis[moduleName] = defaultExport;
-  })
+  });
 
   return apis;
 }
@@ -53,17 +58,21 @@ function collectApis(): FreeObject {
 function parseApi(apiConfig: FreeObject): FreeObject {
   if (!apiConfig) return {};
 
-  let apis: FreeObject = {};
+  const apis: FreeObject = {};
   Object.keys(apiConfig).forEach(moduleName => {
     apis[moduleName] = {};
 
     const module: FreeObject = (apiConfig as any)[moduleName] || {};
     Object.keys(module).forEach(funcName => {
-      let { url, method, params } = module[funcName];
+      const { url, params } = module[funcName];
+      let { method } = module[funcName];
 
       const paramRuleValidateRes = paramRuleValidate(params);
       if (paramRuleValidateRes.length > 0) {
-        logger.error('Verification Of Http Request Parameter Rules Failed', paramRuleValidateRes)
+        logger.error(
+          "Verification Of Http Request Parameter Rules Failed",
+          paramRuleValidateRes
+        );
         return;
       }
 
@@ -74,7 +83,6 @@ function parseApi(apiConfig: FreeObject): FreeObject {
       if (method === "post") httpMethod = myAxios.post;
       if (method === "put") httpMethod = myAxios.put;
       if (method === "delete") httpMethod = myAxios.delete;
-      if (method === "postjson") httpMethod = myAxios.postJson;
 
       if (httpMethod) {
         apis[moduleName][funcName] = httpMethod.bind(null, url);
@@ -86,7 +94,7 @@ function parseApi(apiConfig: FreeObject): FreeObject {
 }
 
 function install(Vue: any) {
-  let apis = parseApi(collectApis())
+  const apis = parseApi(collectApis());
   Vue.prototype.$api = apis;
 }
 

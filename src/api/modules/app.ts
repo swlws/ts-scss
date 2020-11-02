@@ -1,6 +1,6 @@
 export default {
-    login: {
-        url: '/api/login',
-        method: 'get'
-    }
-}
+  login: {
+    url: "/api/login",
+    method: "get"
+  }
+};

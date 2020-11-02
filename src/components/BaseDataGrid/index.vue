@@ -1,15 +1,18 @@
 <template>
   <div class="com-data-grid-box">
     <section>
-      <dg-section 
-        :config="pSectionConfig" 
+      <dg-section
+        :config="pSectionConfig"
         :index-begin="indexBegin"
         @select="checkEvent"
         @select-all="checkEvent"
         @row-click="row => this.$emit('row-click', row)"
         @row-dblclick="row => this.$emit('row-db-click', row)"
-        @sort-change="({ column, prop, order }) =>this.$emit('sort-change', column, prop, order)"
-       />
+        @sort-change="
+          ({ column, prop, order }) =>
+            this.$emit('sort-change', column, prop, order)
+        "
+      />
     </section>
 
     <footer>
@@ -48,8 +51,8 @@ export default {
     DgFooter
   },
   methods: {
-    checkEvent(data){
-      this.$emit('update:selection', data);
+    checkEvent(data) {
+      this.$emit("update:selection", data);
     },
     pageChangeEvent() {
       this.$nextTick(function() {
@@ -59,8 +62,8 @@ export default {
     }
   },
   computed: {
-    pSectionConfig(){
-      let { data = [], columns = [], height = '100%' } = this.bodyConfig || {};
+    pSectionConfig() {
+      let { data = [], columns = [], height = "100%" } = this.bodyConfig || {};
       data = Array.isArray(data) ? data : [];
       columns = Array.isArray(columns) ? columns : [];
 
@@ -68,24 +71,23 @@ export default {
         data,
         columns,
         height
-      }
+      };
     },
-    pFooterConfig(){
-      let {
-        show = true, total = 0, pageSize = 10, pageNum = 1
-      } = this.pageConfig || {};
+    pFooterConfig() {
+      let { show = true, total = 0, pageSize = 10, pageNum = 1 } =
+        this.pageConfig || {};
 
-      show = typeof show === 'boolean' ? show : true;
-      total = typeof total === 'number' ? total : 0;
-      pageSize = typeof pageSize === 'number' ? pageSize : 10;
-      pageNum = typeof pageNum === 'number' ? pageNum : 1;
+      show = typeof show === "boolean" ? show : true;
+      total = typeof total === "number" ? total : 0;
+      pageSize = typeof pageSize === "number" ? pageSize : 10;
+      pageNum = typeof pageNum === "number" ? pageNum : 1;
 
       return {
         show,
         total,
         pageSize,
         pageNum
-      }
+      };
     },
     indexBegin() {
       return (this.pageConfig.pageNum - 1) * this.pageConfig.pageSize;
