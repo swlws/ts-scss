@@ -3,21 +3,21 @@
  * 提供两个方法，$get,$off
  */
 
-import Vue from 'vue';
-import { getObjectType } from './tool';
+import Vue from "vue";
+import { getObjectType } from "./tool";
 
 // 事件车存储，key为事件车的唯一标识，value为事件车
-const BUSES:FreeObject = {};
+const BUSES: FreeObject = {};
 
 /**
  * 获取事件车实例
  * @param {*} key 事件车的唯一标识符
  */
 function getInstance(key: string) {
-  let type = getObjectType(key);
+  const type = getObjectType(key);
 
-  if (type !== 'string') {
-    return new Error('Param Key Must Be String');
+  if (type !== "string") {
+    return new Error("Param Key Must Be String");
   }
 
   let instance = BUSES[key];
@@ -33,13 +33,13 @@ function getInstance(key: string) {
  * @param {*} key 事件车的唯一标识符
  */
 function destroyedInstance(key: string) {
-  let type = getObjectType(key);
+  const type = getObjectType(key);
 
-  if (type !== 'string') {
-    return new Error('Param Key Must Be String');
+  if (type !== "string") {
+    return new Error("Param Key Must Be String");
   }
 
-  let instance = BUSES[key];
+  const instance = BUSES[key];
   if (instance) {
     instance.$off();
     BUSES[key] = null;
@@ -50,5 +50,5 @@ function destroyedInstance(key: string) {
 
 export default {
   $get: getInstance,
-  $off: destroyedInstance,
+  $off: destroyedInstance
 };

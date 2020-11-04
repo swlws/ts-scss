@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import appStore from './mudules/appStore';
+import appStore from "./mudules/appStore";
 
 Vue.use(Vuex);
 

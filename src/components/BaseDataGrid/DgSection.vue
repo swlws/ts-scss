@@ -9,7 +9,10 @@
       @select-all="data => this.$emit('select-all', data)"
       @row-click="row => this.$emit('row-click', row)"
       @row-dblclick="row => this.$emit('row-db-click', row)"
-      @sort-change="({ column, prop, order }) =>this.$emit('sort-change', column, prop, order)"
+      @sort-change="
+        ({ column, prop, order }) =>
+          this.$emit('sort-change', column, prop, order)
+      "
     />
   </div>
 </template>
@@ -35,6 +38,6 @@ export default {
       type: Number,
       default: 0
     }
-  },
+  }
 };
 </script>

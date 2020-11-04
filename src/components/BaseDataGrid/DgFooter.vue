@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import BasePagination from './BasePagination';
+import BasePagination from "./BasePagination";
 
 export default {
   name: "DgFooter",
@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    changeEvent( ) {
+    changeEvent() {
       this.$emit("change");
     }
   }

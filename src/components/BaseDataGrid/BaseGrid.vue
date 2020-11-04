@@ -55,16 +55,14 @@
 
       <el-table-column :min-width="50" header-align="right">
         <template slot="header">
-          <ColumnControl
+          <column-control
             :control-columns="controlColumns"
             @toggle-field-event="toggleFieldEvent"
           />
         </template>
       </el-table-column>
 
-      <template slot="empty">
-        nothing
-      </template>
+      <template slot="empty">无数据</template>
     </el-table>
   </div>
 </template>

@@ -1,13 +1,5 @@
 <template>
   <div id="app">
-    <!-- <header>
-      <nav>
-        <router-link :to="{ path: '/' }">home</router-link>
-      </nav>
-      <nav>
-        <router-link :to="{ path: '/scss' }">scss</router-link>
-      </nav>
-    </header> -->
     <router-view />
   </div>
 </template>

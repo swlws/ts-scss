@@ -3,29 +3,21 @@
     <div>
       <article>
         <header>
-          {{ $t("login.title") }}
+          系统登录
         </header>
         <section>
           <div>
             <base-svg-icon icon="account" />
-            <input
-              type="text"
-              v-model="account"
-              :placeholder="$t('login.accoutPlaceHolder')"
-            />
+            <input type="text" v-model="account" :placeholder="'请输入账号'" />
           </div>
           <div>
             <base-svg-icon icon="password" />
-            <input
-              type="text"
-              v-model="pwd"
-              :placeholder="$t('login.pwdPlaceHolder')"
-            />
+            <input type="text" v-model="pwd" :placeholder="'请输入密码'" />
           </div>
         </section>
         <footer>
           <button @click="submit">
-            {{ $t("login.submitBtn") }}
+            登录
           </button>
         </footer>
       </article>

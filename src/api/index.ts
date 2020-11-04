@@ -15,12 +15,12 @@ const ruleError = (key: string, pre?: string) => {
 function paramRuleValidate(
   rule: FreeObject,
   pre?: string
-): Array<ruleErrorCode> {
-  if (!rule) return [] as Array<ruleErrorCode>;
+): Array<RuleErrorCode> {
+  if (!rule) return [] as Array<RuleErrorCode>;
 
   const types = [String, Number, Boolean, Array, Object];
 
-  const res: Array<ruleErrorCode> = [];
+  const res: Array<RuleErrorCode> = [];
   Object.keys(rule).forEach(key => {
     const v = rule[key];
 
@@ -62,7 +62,7 @@ function parseApi(apiConfig: FreeObject): FreeObject {
   Object.keys(apiConfig).forEach(moduleName => {
     apis[moduleName] = {};
 
-    const module: FreeObject = (apiConfig as any)[moduleName] || {};
+    const module: FreeObject = (apiConfig as FreeObject)[moduleName] || {};
     Object.keys(module).forEach(funcName => {
       const { url, params } = module[funcName];
       let { method } = module[funcName];
@@ -78,11 +78,7 @@ function parseApi(apiConfig: FreeObject): FreeObject {
 
       method = method.toLowerCase();
 
-      let httpMethod;
-      if (method === "get") httpMethod = myAxios.get;
-      if (method === "post") httpMethod = myAxios.post;
-      if (method === "put") httpMethod = myAxios.put;
-      if (method === "delete") httpMethod = myAxios.delete;
+      const httpMethod = (myAxios as FreeObject)[method];
 
       if (httpMethod) {
         apis[moduleName][funcName] = httpMethod.bind(null, url);

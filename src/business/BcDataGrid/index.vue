@@ -1,7 +1,7 @@
 <template>
   <div class="com-data-grid-box">
     <header>
-      <DgHeader :config="pHeaderConfig" @change="searchChangeEvent" />
+      <dg-header :config="pHeaderConfig" @change="searchChangeEvent" />
     </header>
 
     <section>
@@ -47,7 +47,6 @@ export default {
       })
     }
   },
-
   methods: {
     searchChangeEvent() {
       this.$nextTick(function() {

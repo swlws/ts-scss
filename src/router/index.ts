@@ -4,34 +4,37 @@ import VueRouter, { RouteConfig } from "vue-router";
 Vue.use(VueRouter);
 
 const myImport = (file: string) => () => import(`../views${file}`);
-const testImport = (file: string) => () => import(`../viewsV2${file}`);
 
 const routes: Array<RouteConfig> = [
-  {
-    path: "/sb",
-    component: testImport("/sb.vue")
-  },
   {
     path: "/login",
     component: myImport("/login/index.vue")
   },
   {
     path: "/home",
-    component: () => import("@business/ComLayoutV1/index.vue"),
+    component: () => import("../business/BcFrame/index.vue"),
     children: [
       {
-        path: "/v2/dg1",
-        component: testImport("/dg1.vue")
+        path: "/entry/overview",
+        component: myImport("/entry/overview/index.vue")
       },
       {
-        path: "/v2/dg2",
-        component: testImport("/dg2.vue")
+        path: "/asset/view/dev",
+        component: myImport("/asset/view/dev/index.vue")
       },
       {
-        path: "/v2/svgIcon",
-        component: testImport("/svgIcon.vue")
+        path: "/asset/view/asset",
+        component: myImport("/asset/view/asset/index.vue")
+      },
+      {
+        path: "/asset/view/tag",
+        component: myImport("/asset/view/tag/index.vue")
       }
     ]
+  },
+  {
+    path: "/test",
+    component: myImport("/test/index.vue")
   }
 ];
 

@@ -11,6 +11,8 @@ function readFile(method, url) {
     `${method.toLowerCase()}${url}.json`
   );
 
+  if (!fs.existsSync(filePath)) return null;
+
   return fs.readFileSync(filePath, "utf-8");
 }
 

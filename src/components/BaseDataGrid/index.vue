@@ -63,6 +63,7 @@ export default {
   },
   computed: {
     pSectionConfig() {
+      // eslint-disable-next-line
       let { data = [], columns = [], height = "100%" } = this.bodyConfig || {};
       data = Array.isArray(data) ? data : [];
       columns = Array.isArray(columns) ? columns : [];

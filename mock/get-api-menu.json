@@ -1,53 +1,120 @@
 {
-    "r0": true,
-    "data": [
+  "r0": true,
+  "r1": "",
+  "data": [
+    {
+      "label": "Labador",
+      "url": "",
+      "id": "xxx-omrwlbz",
+      "child": [
         {
-            "label": "导航",
-            "url": "/dashboard",
-            "recommendList": [
-                {
-                    "label": "推荐项",
-                    "url": "/systemMgr"
-                },
-                {
-                    "label": "推荐项",
-                    "url": "/systemMgr"
-                }
-            ],
-            "opList": [
-                {
-                    "label": "操作",
-                    "url": "/systemMgr"
-                },
-                {
-                    "label": "操作",
-                    "url": "/systemMgr"
-                }
-            ]
+          "label": "概览",
+          "url": "/entry/overview",
+          "id": "xxx-odksmdafn"
+        }
+      ]
+    },
+    {
+      "label": "资产中心",
+      "url": "",
+      "child": [
+        {
+          "label": "视图",
+          "url": "",
+          "child": [
+            {
+              "label": "设备视图",
+              "url": "/asset/view/dev",
+              "id": "xxx-gdzuajh"
+            },
+            {
+              "label": "资产视图",
+              "url": "/asset/view/asset",
+              "id": "xxx-aihexbiyp"
+            },
+            { "label": "标签管理", "url": "/asset/view/tag", "id": "xxx-ntxsb" }
+          ],
+          "id": "xxx-sjaep"
         },
         {
-            "label": "导航",
-            "url": "/systemMgr",
-            "recommendList": [
-                {
-                    "label": "推荐项",
-                    "url": "/systemMgr"
-                },
-                {
-                    "label": "推荐项",
-                    "url": "/systemMgr"
-                }
-            ],
-            "opList": [
-                {
-                    "label": "操作",
-                    "url": "/systemMgr"
-                },
-                {
-                    "label": "操作",
-                    "url": "/systemMgr"
-                }
-            ]
+          "label": "设备管理",
+          "url": "",
+          "child": [
+            { "label": "分组管理", "url": "", "id": "xxx-mrpsrra" },
+            { "label": "设备归属管理", "url": "", "id": "xxx-advzxe" },
+            { "label": "设备凭证管理", "url": "", "id": "xxx-rxnzalpe" },
+            { "label": "设备例外管理", "url": "", "id": "xxx-fodxnroen" },
+            { "label": "设备状态管理", "url": "", "id": "xxx-kimhuhvtc" },
+            { "label": "网络分段", "url": "", "id": "xxx-dbptuuzczu" }
+          ],
+          "id": "xxx-ovilngzjd"
+        },
+        {
+          "label": "仪表盘",
+          "url": "",
+          "child": [
+            { "label": "仪表盘01", "url": "", "id": "xxx-gkoksk" },
+            { "label": "仪表盘02", "url": "", "id": "xxx-btdajzga" },
+            { "label": "仪表盘03", "url": "", "id": "xxx-zbllpig" }
+          ],
+          "id": "xxx-akpgzqxer"
+        },
+        {
+          "label": "系统管理",
+          "url": "",
+          "child": [
+            { "label": "分组管理", "url": "", "id": "xxx-pmreyatvb" },
+            { "label": "设备归属管理", "url": "", "id": "xxx-cyfxxke" },
+            { "label": "网络分段管理", "url": "", "id": "xxx-aiwoosbg" }
+          ],
+          "id": "xxx-kmiujhlv"
+        },
+        { "label": "高级查询", "url": "", "id": "xxx-mozitangu" }
+      ],
+      "id": "xxx-uetsadob"
+    },
+    {
+      "label": "设备与任务",
+      "url": "",
+      "child": [
+        { "label": "主页", "url": "", "id": "xxx-ihhqumwu" },
+        { "label": "任务历史", "url": "", "id": "xxx-lcgbrmvs" },
+        { "label": "任务创建", "url": "", "id": "xxx-oobea" }
+      ],
+      "id": "xxx-qcteetdm"
+    },
+    {
+      "label": "Agent管理",
+      "url": "",
+      "child": [
+        {
+          "label": "主页",
+          "url": "",
+          "child": [{ "label": "", "url": "", "id": "xxx-pczmlmn" }],
+          "id": "xxx-mdnkotlj"
+        },
+        { "label": "客户端视图", "url": "", "id": "xxx-lakufgywdt" },
+        { "label": "客户端操作", "url": "", "id": "xxx-yqazrdoib" }
+      ],
+      "id": "xxx-ghknrye"
+    },
+    { "label": "风险视图", "url": "", "id": "xxx-hcaqjzc" },
+    { "label": "合规检查", "url": "", "id": "xxx-bfdhxggib" },
+    { "label": "漏洞管理", "url": "", "id": "xxx-exepxtnbht" },
+    { "label": "补丁管理", "url": "", "id": "xxx-eylcgvio" },
+    { "label": "性能管理", "url": "", "id": "xxx-fsxhptg" },
+    {
+      "label": "用户管理",
+      "url": "",
+      "child": [
+        {
+          "label": "",
+          "url": "",
+          "child": [{ "label": "", "url": "", "id": "xxx-nzc" }],
+          "id": "xxx-ebtyisxy"
         }
-    ]
+      ],
+      "id": "xxx-wgvwrxzl"
+    }
+  ]
 }
