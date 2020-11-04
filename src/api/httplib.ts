@@ -32,7 +32,7 @@ const errorHandler = (context: string, error: any) => {
   Log.error(`httplib.js ${context}`, `Error: ${error}`);
 };
 
-export function get(url: string, params: FreeObject, config: FreeObject) {
+export function get(url: string, params?: FreeObject, config?: FreeObject) {
   return instance
     .get(url, {
       params,

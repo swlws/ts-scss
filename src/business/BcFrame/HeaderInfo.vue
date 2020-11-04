@@ -1,7 +1,7 @@
 <template>
   <header class="frame-header">
     <div class="nav-wrap">
-      <base-nav :data="menu" />
+      <base-nav :data="menu" @change="changeEvent" />
     </div>
 
     <div class="alert-wrap">
@@ -18,21 +18,28 @@
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 @Component({
   computed: mapState({
-    menu: (state: any) => state.appStore.menu
-  })
+    menu: (state: any) => state.menuStore.menu
+  }),
+  methods: mapMutations(["updateBreadCrumb"])
 })
-export default class HeaderInfo extends Vue {}
+export default class HeaderInfo extends Vue {
+  updateBreadCrumb!: (checkIds: string[]) => {};
+
+  changeEvent(checkIds: string[]) {
+    this.updateBreadCrumb(checkIds);
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .frame-header {
-  height: 60px;
+  height: 100%;
   width: 100%;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid rgb(57, 103, 244);
 
   display: flex;
   flex-direction: row;

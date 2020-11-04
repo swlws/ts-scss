@@ -46,6 +46,9 @@ import SecondNav from "./SecondNav.vue";
 
       // 需要判断当前路由与带跳转路由是否一样，否则会抱路由重复
       url && this.$route.path !== url ? this.$router.push(url) : "";
+    },
+    checkIds(newV) {
+      this.$emit("change", newV);
     }
   }
 })
